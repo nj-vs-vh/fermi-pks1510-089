@@ -9,6 +9,7 @@ out*
 *.fits
 *.par
 *.txt
+*.pyc
 
 PKS.ipynb
 5day_bin_Kmeans_2.ipynb
