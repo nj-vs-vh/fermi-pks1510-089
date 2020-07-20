@@ -1,0 +1,14 @@
+.vscode/
+.ipynb_checkpoints/
+
+out*
+
+*.png
+*.yaml
+*.lst
+*.fits
+*.par
+*.txt
+
+PKS.ipynb
+5day_bin_Kmeans_2.ipynb
