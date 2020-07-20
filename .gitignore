@@ -8,8 +8,10 @@ out*
 *.lst
 *.fits
 *.par
-*.txt
 *.pyc
 
 PKS.ipynb
 5day_bin_Kmeans_2.ipynb
+
+merged_data_fit.txt
+merged_photons_ltcube.tar.gz
