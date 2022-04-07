@@ -8,6 +8,7 @@ merges them into one config, ready for GTAnalysis
 import os
 import subprocess
 import yaml
+pyamlVer = yaml.__version__
 
 from fermipy.gtanalysis import GTAnalysis
 
@@ -61,7 +62,10 @@ if __name__ == "__main__":
     # modify base config to include merged files
     with open(BASE_CONFIG) as infile, \
             open(CONFIG_FINAL_FILE, 'w') as outfile:
-        config = yaml.load(infile)
+        if int(pyamlVer[0]) >= 5 :
+            config = yaml.load(infile, Loader=yaml.FullLoader)
+        else : 
+            config = yaml.load(infile)
         config['data']['evfile'] = os.path.join(os.getcwd(), FT1_FILES_LIST)
         config['data']['ltcube'] = os.path.join(os.getcwd(), LTCUBE_FINAL_FILE)
         config['fileio'] = {'outdir': 'out_merged/'}
