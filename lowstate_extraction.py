@@ -6,6 +6,7 @@ Module automates config creation and runs fermitools utils.
 
 import os
 import yaml
+pyamlVer = yaml.__version__
 import datetime
 
 from fermipy.gtanalysis import GTAnalysis
@@ -24,7 +25,10 @@ def set_base_config(newbaseconfig):
 
 def prepare_temp_config(tmin, tmax, outdir=None, find_directory=False):
     with open(BASE_CONFIG) as file:
-        config = yaml.load(file)
+        if int(pyamlVer[0]) >= 5 :
+            config = yaml.load(file, Loader=yaml.FullLoader)
+        else : 
+            config = yaml.load(file)
 
     if outdir is None:
         outdir = 'out_temp_from_{}_to_{}'.format(int(tmin), int(tmax))
@@ -71,5 +75,8 @@ def extract_photons_data(tmin, tmax, outdir=None, find_directory=False):
 if __name__ == "__main__":
     # config_path, outdir = prepare_temp_config(0, 0)
     # with open(config_path) as f:
-    #     print(yaml.load(f))
+    # if int(pyamlVer[0]) >= 5 :
+    #        print(yaml.load(file, Loader=yaml.FullLoader))
+    #    else : 
+    #       print(yaml.load(file))
     extract_photons_data(244093400.0, 252733400.0)
